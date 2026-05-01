@@ -66,3 +66,36 @@ print(function_c1(np.arange(1,9).reshape(4,2)))
 
 
 def plot():
+    """Plots f(x) = 1 + x + 4/(x - 2)^2."""
+    # Create x values, avoiding x = 2 where the function is undefined
+    x1 = np.linspace(-10, 1.9, 500)  # Left of asymptote
+    x2 = np.linspace(2.1, 10, 500)   # Right of asymptote
+    
+    # Calculate y values for each segment
+    y1 = 1 + x1 + 4 / (x1 - 2)**2
+    y2 = 1 + x2 + 4 / (x2 - 2)**2
+    
+    # Create the plot
+    plt.plot(x1, y1, 'b-', label='f(x) = 1 + x + 4/(x - 2)²')
+    plt.plot(x2, y2, 'b-')
+    
+    # Add vertical asymptote at x = 2
+    plt.axvline(x=2, color='r', linestyle='--', alpha=0.5, label='Asymptote: x = 2')
+    
+    # Add oblique asymptote y = x + 1
+    x_asymptote = np.linspace(-10, 10, 100)
+    y_asymptote = x_asymptote + 1
+    plt.plot(x_asymptote, y_asymptote, 'g--', alpha=0.5, label='Asymptote: y = x + 1')
+    
+    # Labels and formatting
+    plt.xlabel('x')
+    plt.ylabel('f(x)')
+    plt.title('f(x) = 1 + x + 4/(x - 2)²')
+    plt.grid(True, alpha=0.3)
+    plt.legend()
+    plt.ylim(-10, 10)  # Limit y-axis for better visualization
+    plt.show()
+
+
+# Call the plot function
+plot()
